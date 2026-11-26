@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#073d3b" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0d1a18" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="My Ibadah">
+<meta name="description" content="Your personal Salah, Quran, Dhikr and Ibadah tracker.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Amiri:wght@400;700&family=Noto+Sans+Bengali:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="styles.css?v=10.33">
+<title>My Ibadah — Daily Worship</title>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand-mark" aria-hidden="true">
+    <svg class="brand-logo" viewBox="0 0 48 48" role="presentation" focusable="false">
+      <path class="logo-crescent" d="M31.8 5.8a16.7 16.7 0 1 0 10.4 28.4A18.5 18.5 0 1 1 31.8 5.8Z"/>
+      <path class="logo-mosque" d="M7 38.5h34M10 35.5V24.8l14-8.2 14 8.2v10.7M18.2 35.5v-7.2a5.8 5.8 0 0 1 11.6 0v7.2M24 16.6v-4.1m-2.3 0h4.6M7 24.8h34"/>
+      <path class="logo-minaret" d="M7 35.5V22.2l2.5-3.7 2.5 3.7v13.3M36 35.5V22.2l2.5-3.7 2.5 3.7v13.3"/>
+    </svg>
+  </div>
+  <h1>My <span>Ibadah</span></h1>
+  <button id="langBtn" class="lang-btn" type="button" aria-label="Switch language">বাংলা</button>
+  <button id="installBtn" class="install-btn" hidden>Install</button>
+</header>
+
+<main>
+
+<!-- Date + next prayer. Full on Home, compact on other day-based screens, hidden elsewhere. -->
+<section class="hero" id="hero" aria-label="Selected date">
+  <button type="button" class="hero-clock" id="heroClock" data-mode="digital" title="Double-tap to switch clock" aria-label="Digital clock. Double-tap to switch to analog.">
+    <span class="hc-face hc-digital" aria-hidden="true">
+      <span class="hc-hm"><b id="hcH">--</b><i class="hc-colon">:</i><b id="hcM">--</b></span>
+      <span class="hc-sub"><span id="hcS">--</span><span id="hcAp"></span></span>
+    </span>
+    <svg class="hc-face hc-analog" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+      <circle class="hc-dial" cx="50" cy="50" r="47"/>
+      <g class="hc-ticks"><line class="mt" x1="50" y1="5.6" x2="50" y2="7.4" transform="rotate(6 50 50)"/><line class="mt" x1="50" y1="5.6" x2="50" y2="7.4" transform="rotate(12 50 50)"/><line class="mt" x1="50" y1="5.6" x2="50" y2="7.4" transform="rotate(18 50 50)"/><line class="mt" x1="50" y1="5.6" x2="50" y2="7.4" transform="rotate(24 50 50)"/><line class="mt" x1="50" y1="5.6" x2="50" y2="7.4" transform="rotate(36 50 50)"/><line class="mt" x1="50" y1="5.6" x2="50" y2="7.4" transform="rotate(42 50 50)"/><line class="mt" x1="50" y1="5.6" x2="50" y2="7.4" transform="rotate(48 50 50)"/><line class="mt" x1="50" y1="5.6" x2="50" y2="7.4" transform="rotate(54 50 50)"/><line class="mt" x1="50" y1="5.6" x2="50" y2="7.4" transform="rotate(66 50 50)"/><line class="mt" x1="50" y1="5.6" x2="50" y2="7.4" transform="rotate(72 50 50)"/><line class="mt" x1="50" y1="5.6" x2="50" y2="7.4" transform="rotate(78 50 50)"/><line class="mt" x1="50" y1="5.6" x2="50" y2="7.4" transform="rotate(84 50 50)"/><line class="mt" x1="50" y1="5.6" x2="50" y2="7.4" transform="rotate(96 50 50)"/><line class="mt" x1="50" y1="5.6" x2="50" y2="7.4" transform="rotate(102 50 50)"/><line class="mt" x1="50" y1="5.6" x2="50" y2="7.4" transform="rotate(108 50 50)"/><line class="mt" x1="50" y1="5.6" x2="50" y2="7.4" transform="rotate(114 50 50)"/><line class="mt" x1="50" y1="5.6" x2="50" y2="7.4" transform="rotate(126 50 50)"/><line class="mt" x1="50" y1="5.6" x2="50" y2="7.4" transform="rotate(132 50 50)"/><line class="mt" x1="50" y1="5.6" x2="50" y2="7.4" transform="rotate(138 50 50)"/><line class="mt" x1="50" y1="5.6" x2="50" y2="7.4" transform="rotate(144 50 50)"/><line class="mt" x1="50" y1="5.6" x2="50" y2="7.4" transform="rotate(156 50 50)"/><line class="mt" x1="50" y1="5.6" x2="50" y2="7.4" transform="rotate(162 50 50)"/><line class="mt" x1="50" y1="5.6" x2="50" y2="7.4" transform="rotate(168 50 50)"/><line class="mt" x1="50" y1="5.6" x2="50" y2="7.4" transform="rotate(174 50 50)"/><line class="mt" x1="50" y1="5.6" x2="50" y2="7.4" transform="rotate(186 50 50)"/><line class="mt" x1="50" y1="5.6" x2="50" y2="7.4" transform="rotate(192 50 50)"/><line class="mt" x1="50" y1="5.6" x2="50" y2="7.4" transform="rotate(198 50 50)"/><line class="mt" x1="50" y1="5.6" x2="50" y2="7.4" transform="rotate(204 50 50)"/><line class="mt" x1="50" y1="5.6" x2="50" y2="7.4" transform="rotate(216 50 50)"/><line class="mt" x1="50" y1="5.6" x2="50" y2="7.4" transform="rotate(222 50 50)"/><line class="mt" x1="50" y1="5.6" x2="50" y2="7.4" transform="rotate(228 50 50)"/><line class="mt" x1="50" y1="5.6" x2="50" y2="7.4" transform="rotate(234 50 50)"/><line class="mt" x1="50" y1="5.6" x2="50" y2="7.4" transform="rotate(246 50 50)"/><line class="mt" x1="50" y1="5.6" x2="50" y2="7.4" transform="rotate(252 50 50)"/><line class="mt" x1="50" y1="5.6" x2="50" y2="7.4" transform="rotate(258 50 50)"/><line class="mt" x1="50" y1="5.6" x2="50" y2="7.4" transform="rotate(264 50 50)"/><line class="mt" x1="50" y1="5.6" x2="50" y2="7.4" transform="rotate(276 50 50)"/><line class="mt" x1="50" y1="5.6" x2="50" y2="7.4" transform="rotate(282 50 50)"/><line class="mt" x1="50" y1="5.6" x2="50" y2="7.4" transform="rotate(288 50 50)"/><line class="mt" x1="50" y1="5.6" x2="50" y2="7.4" transform="rotate(294 50 50)"/><line class="mt" x1="50" y1="5.6" x2="50" y2="7.4" transform="rotate(306 50 50)"/><line class="mt" x1="50" y1="5.6" x2="50" y2="7.4" transform="rotate(312 50 50)"/><line class="mt" x1="50" y1="5.6" x2="50" y2="7.4" transform="rotate(318 50 50)"/><line class="mt" x1="50" y1="5.6" x2="50" y2="7.4" transform="rotate(324 50 50)"/><line class="mt" x1="50" y1="5.6" x2="50" y2="7.4" transform="rotate(336 50 50)"/><line class="mt" x1="50" y1="5.6" x2="50" y2="7.4" transform="rotate(342 50 50)"/><line class="mt" x1="50" y1="5.6" x2="50" y2="7.4" transform="rotate(348 50 50)"/><line class="mt" x1="50" y1="5.6" x2="50" y2="7.4" transform="rotate(354 50 50)"/><line class="hq" x1="50" y1="7" x2="50" y2="15" transform="rotate(0 50 50)"/><line class="hr" x1="50" y1="8.5" x2="50" y2="13.5" transform="rotate(30 50 50)"/><line class="hr" x1="50" y1="8.5" x2="50" y2="13.5" transform="rotate(60 50 50)"/><line class="hq" x1="50" y1="7" x2="50" y2="15" transform="rotate(90 50 50)"/><line class="hr" x1="50" y1="8.5" x2="50" y2="13.5" transform="rotate(120 50 50)"/><line class="hr" x1="50" y1="8.5" x2="50" y2="13.5" transform="rotate(150 50 50)"/><line class="hq" x1="50" y1="7" x2="50" y2="15" transform="rotate(180 50 50)"/><line class="hr" x1="50" y1="8.5" x2="50" y2="13.5" transform="rotate(210 50 50)"/><line class="hr" x1="50" y1="8.5" x2="50" y2="13.5" transform="rotate(240 50 50)"/><line class="hq" x1="50" y1="7" x2="50" y2="15" transform="rotate(270 50 50)"/><line class="hr" x1="50" y1="8.5" x2="50" y2="13.5" transform="rotate(300 50 50)"/><line class="hr" x1="50" y1="8.5" x2="50" y2="13.5" transform="rotate(330 50 50)"/></g>
+      <path class="hc-moon" d="M50 17.6a3.1 3.1 0 1 0 2 5.5 2.4 2.4 0 1 1-2-5.5Z"/>
+      <g class="hc-hand hc-h" id="hcHourHand"><line x1="50" y1="54" x2="50" y2="29"/></g>
+      <g class="hc-hand hc-m" id="hcMinHand"><line x1="50" y1="56" x2="50" y2="18"/></g>
+      <g class="hc-hand hc-s" id="hcSecHand"><line x1="50" y1="61" x2="50" y2="13"/><circle cx="50" cy="26" r="2.4"/></g>
+      <circle class="hc-cap" cx="50" cy="50" r="3.4"/><circle class="hc-cap-in" cx="50" cy="50" r="1.3"/>
+    </svg>
+  </button>
+  <div class="hero-greeting">Assalamu Alaikum</div>
+  <div class="hero-date" id="prettyDate"></div>
+  <div class="hero-hijri" id="hijriDate"></div>
+  <div class="date-nav" aria-label="Choose date">
+    <button type="button" class="date-step" id="previousDateBtn" aria-label="Previous day">‹</button>
+    <button type="button" class="date-today" id="dashboardDateBtn">Today</button>
+    <button type="button" class="date-step" id="nextDateBtn" aria-label="Next day">›</button>
+  </div>
+  <div class="next-prayer" id="nextPrayerChip" hidden>
+    <div><small>NEXT PRAYER</small><b id="nextPrayerName">—</b></div>
+    <strong id="nextPrayerTime"></strong>
+    <div class="white-days" id="whiteDaysBadge" hidden role="note">
+      <span class="wd-moon" aria-hidden="true">🌕</span>
+      <b class="wd-title">Ayyam al-Bid</b>
+      <span class="wd-sub"><span id="wdDay"></span><i aria-hidden="true">·</i><span id="wdNote"></span></span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== HOME ===================== -->
+<section id="dashboardPanel" class="stack">
+
+  <section class="card prayer-status-card" aria-label="Today's prayers">
+    <div class="card-head">
+      <div>
+        <h2 id="prayerCardTitle">Today's prayers</h2>
+        <p class="sub" id="prayerSummary">0 of 5 completed</p>
+      </div>
+      <button class="link-btn" data-goto="salah">Details ›</button>
+    </div>
+    <div class="progress-line" aria-hidden="true"><i id="prayerBar"></i></div>
+    <div id="dashboardPrayerList" class="dashboard-prayers"></div>
+  </section>
+
+  <section class="card times-card" aria-label="Prayer timings">
+    <div class="card-head">
+      <div>
+        <h2>Prayer times</h2>
+        <p class="sub" id="dashboardTimeLocation">Dhaka, Bangladesh</p>
+      </div>
+      <button class="link-btn" data-goto="times" aria-label="Open prayer times settings">Change ›</button>
+    </div>
+    <div class="prayer-time-preview" id="dashboardPrayerTimes">
+      <div><small>FAJR</small><b>—</b></div><div><small>DHUHR</small><b>—</b></div><div><small>ASR</small><b>—</b></div><div><small>MAGHRIB</small><b>—</b></div><div><small>ISHA</small><b>—</b></div>
+    </div>
+  </section>
+
+  <section class="card ibadah-progress-card" aria-label="Ibadah progress">
+    <div class="card-head">
+      <div>
+        <h2>Ibadah progress</h2>
+        <button type="button" class="ip-period" id="ipPeriod" aria-label="Change period"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3.5 10h17M8 3v4M16 3v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="8.5" cy="14" r="1.1" fill="currentColor"/><circle cx="12" cy="14" r="1.1" fill="currentColor"/><circle cx="15.5" cy="14" r="1.1" fill="currentColor"/></svg><span id="ringsDateLabel">Today</span><i aria-hidden="true">⇅</i></button>
+      </div>
+    </div>
+    <div class="rings-layout">
+      <div class="rings-visual">
+        <svg viewBox="0 0 220 220" role="img" aria-label="Circular Salah, Dhikr and Quran progress">
+          <circle class="ring-track" cx="110" cy="110" r="84"/><circle class="ring-progress ring-outer" id="salahRing" cx="110" cy="110" r="84"/>
+          <circle class="ring-track" cx="110" cy="110" r="62"/><circle class="ring-progress ring-middle" id="dhikrRing" cx="110" cy="110" r="62"/>
+          <circle class="ring-track" cx="110" cy="110" r="40"/><circle class="ring-progress ring-inner" id="quranRing" cx="110" cy="110" r="40"/>
+          <text x="110" y="106" text-anchor="middle" class="rings-center-title">OVERALL</text>
+          <text x="110" y="132" text-anchor="middle" class="rings-center-value" id="ringsCenterPct">0%</text>
+        </svg>
+      </div>
+      <div class="rings-legend">
+        <button type="button" class="ring-legend-item" data-ring-tab="salah" aria-label="Open Salah tracker"><i class="ring-dot salah-dot"></i><span><b>Salah</b><small id="ringSalahValue">0/5 prayers</small><em id="ringSalahRemaining">Remaining: 5</em></span><strong id="ringSalahPct">0%</strong></button>
+        <button type="button" class="ring-legend-item" data-ring-tab="dhikr" aria-label="Open Dhikr tracker"><i class="ring-dot dhikr-dot"></i><span><b>Dhikr</b><small id="ringDhikrValue">0 recitations</small><em id="ringDhikrRemaining">Set a target</em></span><strong id="ringDhikrPct">0%</strong></button>
+        <button type="button" class="ring-legend-item" data-ring-tab="quran" aria-label="Open Quran tracker"><i class="ring-dot quran-dot"></i><span><b>Quran</b><small id="ringQuranValue">0/10 pages</small><em id="ringQuranRemaining">Remaining: 10</em></span><strong id="ringQuranPct">0%</strong></button>
+      </div>
+    </div>
+    <div class="ibadah-goal-status" id="ibadahGoalStatus" aria-live="polite">Keep going — every step counts</div>
+  </section>
+
+  <div class="quick-actions" aria-label="Quick actions">
+    <button data-goto="duas"><span aria-hidden="true">🤲</span><b>Duas</b></button>
+    <button data-goto="azkar"><span aria-hidden="true">📿</span><b>Azkar</b></button>
+    <button data-goto="good"><span aria-hidden="true">💚</span><b>Good deeds</b></button>
+    <button data-goto="insights"><span aria-hidden="true">📊</span><b>Reports</b></button>
+  </div>
+
+  <section class="card weekly-counter-card" aria-label="Weekly dhikr summary">
+    <div class="weekly-counter-main">
+      <div class="card-head tight">
+        <div><h2>Weekly dhikr</h2><p class="sub">Last 7 days</p></div>
+        <div class="week-total"><span>Total</span><strong id="weeklyDhikrTotal">0</strong></div>
+      </div>
+      <div class="week-chart" id="weeklyDhikrChart" aria-label="Daily dhikr counts"></div>
+      <div class="week-days" id="weeklyDhikrDays"><span>—</span><span>—</span><span>—</span><span>—</span><span>—</span><span>—</span><span>—</span></div>
+    </div>
+    <div class="weekly-ranking">
+      <div class="rank-title">Most recited</div>
+      <div class="rank-item"><b>1</b><span id="rankDhikr1">—</span><strong id="rankCount1">0</strong></div>
+      <div class="rank-item"><b>2</b><span id="rankDhikr2">—</span><strong id="rankCount2">0</strong></div>
+      <div class="rank-item"><b>3</b><span id="rankDhikr3">—</span><strong id="rankCount3">0</strong></div>
+    </div>
+  </section>
+
+  <button type="button" class="card deeds-row" data-goto="good">
+    <span aria-hidden="true">🤲</span><small>Good deeds today</small><strong id="dashDeeds">0/0</strong><i aria-hidden="true">›</i>
+  </button>
+
+  <section class="card">
+    <div class="card-head tight"><h2>This week</h2><button class="link-btn" data-goto="insights">Reports ›</button></div>
+    <div class="weekly-snapshot">
+      <div><small>Fard prayers</small><strong id="dashWeekFard">0</strong></div>
+      <div><small>Quran pages</small><strong id="dashWeekPages">0</strong></div>
+      <div><small>Dhikr</small><strong id="dashWeekDhikr">0</strong></div>
+    </div>
+  </section>
+
+  <section class="card daily-inspiration">
+    <div class="inspiration-title">✦ DAILY AYAH</div>
+    <div class="inspiration-ar" id="dailyAyahArabic" lang="ar" dir="rtl"></div>
+    <p id="dailyAyahText"></p>
+    <small id="dailyAyahRef"></small>
+  </section>
+
+  <div class="inspiration-grid">
+    <article class="card inspiration-card"><div class="inspiration-title">HADITH OF THE DAY</div><p id="dashboardHadith"></p><small id="dashboardHadithRef"></small></article>
+    <article class="card inspiration-card"><div class="inspiration-title">DAILY DUA</div><div class="inspiration-ar" id="dashboardDuaArabic" lang="ar" dir="rtl"></div><p id="dashboardDuaText"></p><small id="dashboardDuaRef"></small></article>
+  </div>
+</section>
+
+<!-- ===================== SALAH ===================== -->
+<section id="salahPanel" class="panel hidden">
+  <div class="section-heading">
+    <div><div class="eyebrow">DAILY CHECKLIST</div><h2>Prayer tracker</h2></div>
+  </div>
+  <div class="date-nav salah-date-nav">
+    <button type="button" class="date-step" id="salahPrevBtn" aria-label="Previous day">‹</button>
+    <input id="datePicker" type="date" aria-label="Choose date">
+    <button type="button" class="date-step" id="salahNextBtn" aria-label="Next day">›</button>
+  </div>
+  <div id="prayerList"></div>
+</section>
+
+<!-- ===================== QAZA (kept for saved data; reachable from older links) ===================== -->
+<section id="qazaPanel" class="panel hidden">
+  <div class="section-heading"><div><div class="eyebrow">MAKE-UP PRAYERS</div><h2>Qaza tracker</h2></div></div>
+  <p class="hint">Record completed Qaza prayers. Lifetime totals are saved separately from the daily checklist.</p>
+  <div id="qazaList"></div>
+  <div class="qaza-summary"><div><small>Completed Qaza (all time)</small><strong id="qazaTotal">0</strong></div><div><small>Today's Qaza</small><strong id="qazaToday">0</strong></div></div>
+  <div class="add-qaza"><label for="qazaPrayer">Add completed Qaza</label><div class="inline-controls"><select id="qazaPrayer"><option>Fajr</option><option>Dhuhr</option><option>Asr</option><option>Maghrib</option><option>Isha</option></select><button id="addQaza" class="primary">＋ Add 1</button></div></div>
+  <p class="tiny-note">Personal counting aid only; ask a qualified scholar about calculating and prioritising missed prayers.</p>
+</section>
+
+<!-- ===================== DHIKR ===================== -->
+<section id="dhikrPanel" class="panel hidden">
+  <div class="section-heading"><div><div class="eyebrow">REMEMBRANCE OF ALLAH</div><h2>Dhikr counter</h2></div></div>
+  <div class="dhikr-total"><small>TODAY'S RECITATIONS</small><strong id="dhikrTotal">0</strong></div>
+  <details class="dhikr-target-settings">
+    <summary>Daily targets <small>Tap to edit</small></summary>
+    <div class="dhikr-target-heading"><p>Set a daily recitation target for each dhikr. Your progress ring uses the combined targets.</p></div>
+    <div id="dhikrTargetSettings"></div>
+  </details>
+  <div id="dhikrList"></div>
+  <div class="add-dhikr">
+    <h3>Add a personal dhikr</h3>
+    <div class="inline-controls"><input id="customDhikr" placeholder="Name of your dhikr" maxlength="60"><button id="addCustomDhikr" class="secondary">Add</button></div>
+  </div>
+</section>
+
+<!-- ===================== QURAN ===================== -->
+<section id="quranPanel" class="panel hidden">
+  <div class="section-heading"><div><div class="eyebrow">DAILY RECITATION</div><h2>Quran tracker</h2></div></div>
+  <div class="quran-progress">
+    <div class="quran-progress-top"><strong id="quranProgressText">0 pages read today</strong></div>
+    <div class="meter quran-meter"><div id="quranMeter"></div></div>
+  </div>
+  <div class="form-grid">
+    <div class="field wide">
+      <span class="field-name">Pages read today</span>
+      <div class="stepper">
+        <button type="button" class="step" data-step="-1" aria-label="One page less">−</button>
+        <input id="quranPages" type="number" inputmode="numeric" min="0" value="0" aria-label="Pages read today">
+        <button type="button" class="step plus" data-step="1" aria-label="One page more">+</button>
+      </div>
+    </div>
+    <label>Surah / reading note<input id="quranSurah" placeholder="e.g. Al-Baqarah"></label>
+    <label>Last ayah reached<input id="quranAyah" type="number" inputmode="numeric" min="0" placeholder="Ayah number"></label>
+    <label class="wide">Daily page target<input id="quranTarget" type="number" inputmode="numeric" min="1" value="10"></label>
+  </div>
+  <button id="saveQuran" class="primary full">Save Quran progress</button>
+  <div class="dua-card compact"><div class="dua-ar" lang="ar" dir="rtl">اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ</div><small>Surah Al-'Alaq 96:1</small></div>
+</section>
+
+<!-- ===================== AZKAR ===================== -->
+<section id="azkarPanel" class="panel hidden">
+  <div class="section-heading"><div><div class="eyebrow">DAILY REMEMBRANCE</div><h2>Azkar</h2></div></div>
+  <div class="segmented" role="tablist" aria-label="Azkar time">
+    <button class="azkar-mode active" data-mode="morning">Morning</button>
+    <button class="azkar-mode" data-mode="evening">Evening</button>
+    <button class="azkar-mode" data-mode="sleep">Before sleep</button>
+  </div>
+  <div id="azkarList"></div>
+  <div class="add-dhikr add-azkar">
+    <h3>Add your own</h3>
+    <div class="inline-controls"><input id="customAzkarText" type="text" maxlength="180" placeholder="Your Azkar / remembrance"><button id="addCustomAzkar" class="secondary">＋ Add</button></div>
+    <p id="azkarAddMode" class="tiny-note">New Azkar will be added to the selected list.</p>
+  </div>
+  <p class="tiny-note">A simple personal checklist. Wording and counts vary by authentic narration — consult a reliable Hisnul Muslim or scholar for full texts.</p>
+  <div class="dua-card compact"><div class="dua-ar" lang="ar" dir="rtl">اللَّهُمَّ بِكَ أَصْبَحْنَا وَبِكَ أَمْسَيْنَا</div><p>Allahumma bika asbahna wa bika amsayna…</p></div>
+</section>
+
+<!-- ===================== DUAS ===================== -->
+<section id="duasPanel" class="panel hidden">
+  <div class="section-heading"><div><div class="eyebrow">QURANIC SUPPLICATIONS</div><h2>Dua collection</h2></div></div>
+  <p class="hint">A small collection of Quranic duas with meanings and references. Check a trusted translation for fuller context.</p>
+  <div class="dua-entry"><div class="dua-ar" lang="ar" dir="rtl">رَبِّ زِدْنِي عِلْمًا</div><p>My Lord, increase me in knowledge.</p><small>Surah Taha 20:114</small></div>
+  <div class="dua-entry"><div class="dua-ar" lang="ar" dir="rtl">رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ</div><p>Our Lord, grant us good in this world and good in the Hereafter, and protect us from the punishment of the Fire.</p><small>Surah Al-Baqarah 2:201</small></div>
+  <div class="dua-entry"><div class="dua-ar" lang="ar" dir="rtl">رَبِّ ارْحَمْهُمَا كَمَا رَبَّيَانِي صَغِيرًا</div><p>My Lord, have mercy upon them as they brought me up when I was small.</p><small>Surah Al-Isra 17:24</small></div>
+  <div class="dua-entry"><div class="dua-ar" lang="ar" dir="rtl">رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ وَاجْعَلْنَا لِلْمُتَّقِينَ إِمَامًا</div><p>Our Lord, grant us from among our spouses and offspring comfort to our eyes and make us an example for the righteous.</p><small>Surah Al-Furqan 25:74</small></div>
+  <div class="dua-entry"><div class="dua-ar" lang="ar" dir="rtl">رَبَّنَا ظَلَمْنَا أَنْفُسَنَا وَإِنْ لَمْ تَغْفِرْ لَنَا وَتَرْحَمْنَا لَنَكُونَنَّ مِنَ الْخَاسِرِينَ</div><p>Our Lord, we have wronged ourselves, and if You do not forgive us and have mercy upon us, we will surely be among the losers.</p><small>Surah Al-A'raf 7:23</small></div>
+  <div class="dua-entry"><div class="dua-ar" lang="ar" dir="rtl">رَبِّ اجْعَلْنِي مُقِيمَ الصَّلَاةِ وَمِنْ ذُرِّيَّتِي</div><p>My Lord, make me an establisher of prayer, and [many] from my descendants.</p><small>Surah Ibrahim 14:40</small></div>
+</section>
+
+<!-- ===================== PRAYER TIMES ===================== -->
+<section id="timesPanel" class="panel hidden">
+  <div class="section-heading"><div><div class="eyebrow">LOCAL PRAYER SCHEDULE</div><h2>Prayer times</h2></div><button id="refreshTimes" class="secondary">↻ Refresh</button></div>
+  <p class="hint" id="timeLocationLabel">Fetching prayer times…</p>
+  <div id="prayerTimes" class="times-grid"></div>
+  <h3 class="sub-h">Location &amp; method</h3>
+  <div class="form-grid">
+    <label>City<input id="cityInput" value="Dhaka"></label>
+    <label>Country<input id="countryInput" value="Bangladesh"></label>
+    <label class="wide">Calculation method<select id="methodInput"><option value="1">Karachi</option><option value="3">Muslim World League</option><option value="2">ISNA</option><option value="5">Egyptian</option><option value="4">Umm Al-Qura</option></select></label>
+  </div>
+  <button id="saveLocation" class="primary full">Save location &amp; update times</button>
+  <div class="reminder-box">
+    <h3>Prayer reminders</h3>
+    <p class="hint">Reminders only work while the app is open. iOS may pause background timers, so this is not a guaranteed alarm.</p>
+    <button id="enableNotifications" class="secondary full">Enable notifications</button>
+    <label class="switchline"><input type="checkbox" id="remindersEnabled"> Remind me at prayer times while app is open</label>
+    <small id="notificationStatus" class="tiny-note"></small>
+  </div>
+</section>
+
+<!-- ===================== GOOD DEEDS ===================== -->
+<section id="goodPanel" class="panel hidden">
+  <div class="section-heading"><div><div class="eyebrow">SMALL DEEDS, CONSISTENTLY</div><h2>Good deeds</h2></div></div>
+  <p class="hint">Tick the good deeds you completed today. This is a personal reflection tool, not a measure of anyone's worth.</p>
+  <div id="goodDeedsList"></div>
+  <div class="add-dhikr">
+    <h3>Add your own</h3>
+    <div class="inline-controls"><input id="customGoodDeed" placeholder="A good deed to track" maxlength="80"><button id="addGoodDeed" class="secondary">Add</button></div>
+  </div>
+</section>
+
+<!-- ===================== REPORTS ===================== -->
+<section id="insightsPanel" class="panel hidden">
+  <div class="section-heading"><div><div class="eyebrow">BUILD CONSISTENCY</div><h2>Progress</h2></div></div>
+  <div class="weekly-report">
+    <h3>This week</h3>
+    <div class="weekly-snapshot"><div><small>Fard prayers</small><strong id="reportWeekFard">0</strong></div><div><small>Quran pages</small><strong id="reportWeekPages">0</strong></div><div><small>Dhikr</small><strong id="reportWeekDhikr">0</strong></div></div>
+  </div>
+  <div class="month-nav"><button id="prevMonth" aria-label="Previous month">‹</button><strong id="monthLabel"></strong><button id="nextMonth" aria-label="Next month">›</button></div>
+  <div class="calendar" id="calendar"></div>
+  <div class="legend"><span><i class="dot done"></i> All prayers</span><span><i class="dot partial"></i> Some prayers</span><span class="legend-hint">Tap a day to edit</span></div>
+  <div class="progress-cards">
+    <div><small>Fard completed this month</small><strong id="monthFard">0</strong></div>
+    <div><small>Dhikr this month</small><strong id="monthDhikr">0</strong></div>
+    <div><small>Quran pages this month</small><strong id="monthPages">0</strong></div>
+    <div><small>Good deeds this month</small><strong id="monthGood">0</strong></div>
+    <div><small>Qaza completed (this month)</small><strong id="monthQaza">0</strong></div>
+  </div>
+  <div class="report-actions"><button id="exportReport" class="secondary full">Export monthly report (CSV)</button></div>
+  <p class="tiny-note">Progress is calculated from entries saved on this device.</p>
+</section>
+
+<!-- ===================== RAMADAN ===================== -->
+<section id="ramadanPanel" class="panel hidden">
+  <div class="section-heading"><div><div class="eyebrow">SPECIAL TRACKER</div><h2>Ramadan mode</h2></div></div>
+  <p class="hint">Track fasting and additional worship for the selected date.</p>
+  <div class="form-grid">
+    <label class="wide">Ramadan day<input id="ramadanDay" type="number" inputmode="numeric" min="1" max="30" placeholder="1–30"></label>
+    <label>Suhoor completed<select id="suhoor"><option value="">Not set</option><option>Yes</option><option>No</option></select></label>
+    <label>Iftar completed<select id="iftar"><option value="">Not set</option><option>Yes</option><option>No</option></select></label>
+    <label class="wide">Fasting<select id="fasting"><option value="">Not set</option><option>Fasted</option><option>Not fasted</option><option>Excused</option></select></label>
+    <label>Tarawih rak'ahs<input id="tarawih" type="number" inputmode="numeric" min="0" value="0"></label>
+    <label>Quran juz completed<input id="juz" type="number" inputmode="numeric" min="0" max="30" value="0"></label>
+  </div>
+  <button id="saveRamadan" class="primary full">Save Ramadan entry</button>
+  <p id="ramadanSummary" class="hint"></p>
+</section>
+
+<!-- ===================== QIBLA ===================== -->
+<section id="qiblaPanel" class="panel hidden">
+  <div class="section-heading"><div><div class="eyebrow">DIRECTION OF PRAYER</div><h2>Qibla compass</h2></div></div>
+  <div class="compass" id="compass" aria-label="Qibla compass">
+    <div class="dial" id="qDial">
+      <span class="tick n">N</span><span class="tick e">E</span><span class="tick s">S</span><span class="tick w">W</span>
+      <div class="qmark" id="qMark"><span>🕋</span></div>
+    </div>
+    <div class="qpointer" aria-hidden="true"></div>
+    <div class="qcenter" id="qCenter">—</div>
+  </div>
+  <div class="q-stats">
+    <div><small>Qibla bearing</small><strong id="qBearing">—</strong></div>
+    <div><small>Distance to Makkah</small><strong id="qDistance">—</strong></div>
+    <div><small>You are facing</small><strong id="qHeading">—</strong></div>
+  </div>
+  <p class="hint" id="qStatus">Tap “Start compass”, then hold your phone flat and turn until the Kaaba icon points to the top arrow.</p>
+  <button id="qStart" class="primary full">Start compass</button>
+  <button id="qGps" class="secondary full">Use my GPS location</button>
+  <p class="tiny-note" id="qLoc"></p>
+  <p class="tiny-note">Phone compasses can be off near metal or magnets. Move your phone in a figure-8 to calibrate, and compare with a known direction if possible.</p>
+</section>
+
+<!-- ===================== SETTINGS ===================== -->
+<section id="settingsPanel" class="panel hidden">
+  <div class="section-heading"><div><div class="eyebrow">YOUR DATA &amp; PREFERENCES</div><h2>Settings &amp; backup</h2></div></div>
+  <div class="lang-card">
+    <div class="field-name">Language</div>
+    <div class="segmented" id="langSeg"><button type="button" data-lang="en" class="active">English</button><button type="button" data-lang="bn">বাংলা</button></div>
+  </div>
+  <p class="hint">Your records are stored in this browser on this device only. Export a backup regularly, especially before changing phones or clearing website data.</p>
+  <div class="backup-actions">
+    <button id="backupData" class="primary">Download backup</button>
+    <label class="secondary import-label" for="restoreFile">Restore backup<input id="restoreFile" type="file" accept="application/json" hidden></label>
+  </div>
+  <div id="dailyHadith" class="hadith-card"></div>
+  <p class="tiny-note">Prayer times are supplied by AlAdhan and can differ by local mosque, calculation method and adjustments. Verify with your local mosque.</p>
+  <div class="danger-zone">
+    <h3>Danger zone</h3>
+    <p class="hint">Permanently removes every record stored on this device.</p>
+    <button id="clearData" class="danger full">Delete all app data</button>
+  </div>
+</section>
+
+</main>
+
+<footer class="app-footnote"><span>Powered by: Nihim-Najaf Technology</span><span>Version: 2.0</span></footer>
+
+<nav class="bottom-nav" aria-label="Main navigation"><div class="bottom-nav-inner">
+<button type="button" class="bn-item active" data-nav="dashboard"><span class="bn-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v9.5h13V10"/><path d="M10 19.5v-5h4v5"/></svg></span>Home</button>
+<button type="button" class="bn-item" data-nav="salah"><span class="bn-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5c-1.6 1.6-4 3.4-4 6.2h8c0-2.8-2.4-4.6-4-6.2z"/><path d="M5 20.5v-7.2h14v7.2"/><path d="M3.5 20.5h17"/><path d="M10.5 20.5v-3.5a1.5 1.5 0 0 1 3 0v3.5"/></svg></span>Salah</button>
+<button type="button" class="bn-item" data-nav="dhikr"><span class="bn-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="2.2"/><path d="M12 3.5V7M12 17v3.5M3.5 12H7M17 12h3.5"/></svg></span>Dhikr</button>
+<button type="button" class="bn-item" data-nav="quran"><span class="bn-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6.5C10 5 7 4.5 4 5v13.5c3-.5 6 0 8 1.5 2-1.5 5-2 8-1.5V5c-3-.5-6 0-8 1.5z"/><path d="M12 6.5V20"/></svg></span>Quran</button>
+<button type="button" class="bn-item" data-nav="more" aria-haspopup="dialog" aria-controls="moreSheet"><span class="bn-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="6.5" height="6.5" rx="1.8"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.8"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.8"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.8"/></svg></span>More</button>
+</div></nav>
+
+<div class="more-sheet" id="moreSheet" role="dialog" aria-modal="true" aria-label="More sections" aria-hidden="true">
+  <div class="more-backdrop" id="moreBackdrop"></div>
+  <div class="more-panel">
+    <div class="sheet-grip"></div>
+    <div class="more-head"><h2>More</h2><button type="button" class="sheet-close" id="moreClose" aria-label="Close">✕</button></div>
+    <div class="more-grid">
+      <button type="button" class="more-item" data-goto="azkar"><span>📿</span>Azkar</button>
+      <button type="button" class="more-item" data-goto="duas"><span>🤲</span>Duas</button>
+      <button type="button" class="more-item" data-goto="times"><span>🕰️</span>Prayer times</button>
+      <button type="button" class="more-item" data-goto="good"><span>💚</span>Good deeds</button>
+      <button type="button" class="more-item" data-goto="insights"><span>📊</span>Reports</button>
+      <button type="button" class="more-item" data-goto="ramadan"><span>🌙</span>Ramadan</button>
+      <button type="button" class="more-item" data-goto="qibla"><span>🧭</span>Qibla</button>
+      <button type="button" class="more-item" data-goto="qaza"><span>🔁</span>Qaza</button>
+      <button type="button" class="more-item" id="moreTasbih"><span>📿</span>Tasbih mode</button>
+      <button type="button" class="more-item wide" data-goto="settings"><span>⚙️</span>Settings &amp; backup</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast" role="status" aria-live="polite"></div>
+<script src="app.js?v=10.22"></script>
+<script src="i18n.js?v=10.13"></script>
+<script src="device.js?v=10.1"></script>
+<script src="features.js?v=10.4"></script>
+<script src="places.js?v=10.11"></script>
+<script src="ramadan.js?v=10.1"></script>
+<script src="slider.js?v=10.15"></script>
+<script src="clock.js?v=10.17"></script>
+<script src="dhikrdetails.js?v=10.19"></script>
+<script src="polish.js?v=10.19"></script>
+</body>
+</html>
